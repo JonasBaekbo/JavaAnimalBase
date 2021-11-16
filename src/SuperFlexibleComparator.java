@@ -1,0 +1,52 @@
+import java.util.Comparator;
+
+public class SuperFlexibleComparator implements Comparator<Animal> {
+   private String direction;
+   private String type;
+
+   public SuperFlexibleComparator(String type, String direction){
+       this.direction = direction;
+       this.type = type;
+   }
+    @Override
+    public int compare(Animal o1, Animal o2) {
+        int resultat = 0;
+        if (type.equals("age")){
+            resultat = Integer.compare(o1.getAge(), o2.getAge());
+        }else if (type.equals("name")){
+            resultat = o1.getName().compareTo(o2.getName());
+        }else if (type.equals("type")){
+            resultat = o1.getType().compareTo(o2.getType());
+        }
+        if (direction.equals("DESC")){
+        resultat = resultat * -1;
+
+        }
+
+        return resultat;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        if (direction.equals("TOGGLE")){
+            if (this.direction.equals("ASC")){
+                this.direction = "DESC";
+            }else{
+                this.direction = "ASC";
+            }
+        }else{
+            this.direction = direction;
+        }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}

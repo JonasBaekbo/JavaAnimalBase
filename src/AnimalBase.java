@@ -13,6 +13,7 @@ public class AnimalBase {
 
     public void start() {
         UserInterface ui = new UserInterface(this);
+        //TEST - Remove later!
         createNewAnimal("Abelone", "large", "elephant", 3);
         createNewAnimal("Nemo", "gold", "fish", 2);
         createNewAnimal("Mischa", "small black", "dog", 6);
@@ -29,17 +30,13 @@ public class AnimalBase {
         return animals;
     }
 
-    public void sortBy(String sort) {
-        // TODO: Implement sorting!
-        if (Objects.equals(sort, "name")){
-            Collections.sort(animals, new NameComparator());
-        }else if( Objects.equals(sort, "type")){
-            Collections.sort(animals, new TypeComparator());
+    private SuperFlexibleComparator comparator = new SuperFlexibleComparator("name", "ASC");
 
-        }else if (Objects.equals(sort, "age")){
-            Collections.sort(animals, new AgeComparator());
-
-        }
+    public void sortBy(String sort, String direction) {
+        // Implemented better sorting with SuperFlexibleComparator!
+            comparator.setType(sort);
+            comparator.setDirection(direction);
+            Collections.sort(animals, comparator);
     }
 
     public void createNewAnimal(String name, String description, String type, int age) {
