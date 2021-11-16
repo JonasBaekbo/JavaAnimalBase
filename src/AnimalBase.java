@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 public class AnimalBase {
 
@@ -30,8 +31,15 @@ public class AnimalBase {
 
     public void sortBy(String sort) {
         // TODO: Implement sorting!
-        System.out.println("TODO: Sort the list of animals by: " + sort);
-            Collections.sort(animals);
+        if (Objects.equals(sort, "name")){
+            Collections.sort(animals, new NameComparator());
+        }else if( Objects.equals(sort, "type")){
+            Collections.sort(animals, new TypeComparator());
+
+        }else if (Objects.equals(sort, "age")){
+            Collections.sort(animals, new AgeComparator());
+
+        }
     }
 
     public void createNewAnimal(String name, String description, String type, int age) {
